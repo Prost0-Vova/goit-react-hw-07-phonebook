@@ -1,23 +1,26 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
-import { deleteContact } from 'redux/ContactsSlice';
-import {ListItem, Button} from '../ContactList.styled';
+import { ListItem, Button } from '../ContactList.styled';
+import { useDeleteContactFromFilterMutation } from 'redux/contactsapi';
 
-function ContactItem  ({ id, name, number })  {
-  const dispatch = useDispatch();
+function ContactItem({ id, name, number }) {
 
-  const removeContact = contactId => {
-    dispatch(deleteContact(contactId));
+
+  const [deleteContactFromFilter] = useDeleteContactFromFilterMutation();
+
+  const removeContact = async () => {
+    try {
+      await deleteContactFromFilter(id);
+      alert("successful")
+    } catch (error) {
+      alert('an error occured during delete process');
+    }
   };
-  return(
+  return (
     <ListItem key={id}>
       {name}: {number}
-      
-    <Button onClick={() => removeContact(id)}>Delete</Button>
-  </ListItem>
-  )
-  
-};
-
+      <Button onClick={() => removeContact(id)}>Delete</Button>
+    </ListItem>
+  );
+}
 
 export default ContactItem;
