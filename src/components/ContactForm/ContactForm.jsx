@@ -1,8 +1,4 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-
-
-
 import {
   useAddContactToFilterMutation,
   useGetContactsQuery,
@@ -14,7 +10,7 @@ function ContactForm() {
   const [number, setNumber] = useState('');
   const { data: contacts } = useGetContactsQuery();
   const [addContactToFilter] = useAddContactToFilterMutation();
-  const dispatch = useDispatch();
+
 
   const validateContact = (name, number) => {
     return contacts.some(

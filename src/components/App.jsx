@@ -2,9 +2,6 @@
 import ContactForm from './ContactForm/ContactForm';
 import ContactList from './ContactList';
 import Filter from './Filter';
-import { useSelector } from 'react-redux';
-
-
 
 export function App() {
 

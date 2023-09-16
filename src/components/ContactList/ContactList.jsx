@@ -4,10 +4,10 @@ import ContactItem from './ContactItem/ContactItem';
 import { useSelector } from 'react-redux';
 import { getFilter } from 'redux/selectors';
 import {ContList} from './ContactList.styled';
-import { useGetContactsQuery, useGetFilterQuery } from 'redux/contactsapi';
+import {  useGetFilterQuery } from 'redux/contactsapi';
 
 function ContactList() {
-  const { data: contacts } = useGetContactsQuery();
+
   const filter = useSelector(getFilter);
 
   const { data: filteredContacts, isLoading, isError } = useGetFilterQuery(filter);
