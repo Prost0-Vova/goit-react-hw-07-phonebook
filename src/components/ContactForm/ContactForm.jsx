@@ -40,8 +40,10 @@ function ContactForm() {
     try {
       const response =  await addContactToFilter({ name, number });
 
-     
-      Notiflix.Notify.success("Successful")
+      if (response.status === "success") {
+        Notiflix.Notify.success("Contact added successfully");
+      }
+      
       setName('');
       setNumber('');
     } catch (error) {
