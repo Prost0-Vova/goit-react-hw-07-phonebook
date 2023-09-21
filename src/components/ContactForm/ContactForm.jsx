@@ -14,7 +14,7 @@ function ContactForm() {
 
   const validateContact = (name, number) => {
     return contacts.some(
-      contact => contact.name === name || contact.number === number
+      contact => contact.name.toLowerCase() === name.toLowerCase() || contact.number === number
     );
   };
 
@@ -34,12 +34,16 @@ function ContactForm() {
       const response =  await addContactToFilter({ name, number });
 
       if (response.error) {
-        alert("Error");
+        alert("Error"); 
         return;
       }
       alert("Successful")
+      setName('');
+      setNumber('');
     } catch (error) {
       alert("Error");
+      
+      
     }
   };
 

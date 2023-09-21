@@ -9,7 +9,9 @@ function ContactItem({ id, name, number }) {
 
   const removeContact = async () => {
     try {
+
       await deleteContactFromFilter(id);
+      
       alert("successful")
     } catch (error) {
       alert('an error occured during delete process');
