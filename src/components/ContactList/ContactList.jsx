@@ -1,7 +1,7 @@
 import React from 'react';
 
 import ContactItem from './ContactItem/ContactItem';
-import Notiflix from 'notiflix';
+
 import { useSelector } from 'react-redux';
 import { getFilter } from 'redux/selectors';
 import {ContList} from './ContactList.styled';
