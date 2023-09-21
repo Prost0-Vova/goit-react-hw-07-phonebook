@@ -38,7 +38,7 @@ function ContactForm() {
    
 
     try {
-      const response =  await addContactToFilter({ name, number });
+      
 
      
       Notiflix.Notify.success("Successful")
