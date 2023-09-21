@@ -1,6 +1,8 @@
 import React from 'react';
 import { ListItem, Button } from '../ContactList.styled';
 import { useDeleteContactFromFilterMutation } from 'redux/contactsapi';
+import Notiflix from 'notiflix';
+
 
 function ContactItem({ id, name, number }) {
 
@@ -12,9 +14,9 @@ function ContactItem({ id, name, number }) {
 
       await deleteContactFromFilter(id);
       
-      alert("successful")
+      Notiflix.Notify.success("Successful")
     } catch (error) {
-      alert('an error occured during delete process');
+      Notiflix.Notify.failure("Error");
     }
   };
   return (

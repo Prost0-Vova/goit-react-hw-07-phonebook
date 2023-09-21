@@ -1,24 +1,29 @@
 import React from 'react';
 
 import ContactItem from './ContactItem/ContactItem';
+import Notiflix from 'notiflix';
 import { useSelector } from 'react-redux';
 import { getFilter } from 'redux/selectors';
 import {ContList} from './ContactList.styled';
-import {  useGetFilterQuery } from 'redux/contactsapi';
+import { useGetContactsQuery } from 'redux/contactsapi';
 
 function ContactList() {
 
   const filter = useSelector(getFilter);
 
-  const { data: filteredContacts, isLoading, isError } = useGetFilterQuery(filter);
 
+  const { data: contacts } = useGetContactsQuery();
 
-  if (isLoading) {
-    return <div>Loading...</div>;
+  if (!contacts) {
+    return null;
   }
 
-  if (isError) {
-    return <div>Error loading contacts</div>;
+  const filteredContacts = contacts.filter(contact =>
+    contact.name.toLowerCase().includes(filter.toLowerCase())
+  );
+
+  if (!filteredContacts?.length) {
+    Notiflix.Notify.info('No contacts found.');
   }
 
   return (

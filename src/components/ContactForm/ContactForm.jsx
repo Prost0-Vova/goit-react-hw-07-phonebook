@@ -4,6 +4,7 @@ import {
   useGetContactsQuery,
 } from 'redux/contactsapi';
 import { Form, Input, Button } from './ContactForm.styled';
+import Notiflix from 'notiflix';
 
 function ContactForm() {
   const [name, setName] = useState('');
@@ -13,8 +14,14 @@ function ContactForm() {
 
 
   const validateContact = (name, number) => {
+    if (!contacts || !Array.isArray(contacts)) {
+      return false;
+    }
     return contacts.some(
-      contact => contact.name.toLowerCase() === name.toLowerCase() || contact.number === number
+      contact => (
+        contact.name.toLowerCase() === name.toLowerCase() ||
+        contact.number === number
+      )
     );
   };
 
@@ -24,7 +31,7 @@ function ContactForm() {
     const isValidateContact = validateContact(name, number);
 
     if (isValidateContact) {
-      alert(`${name} is already in contacts.`);
+      Notiflix.Notify.failure(`${name} is already in contacts.`)
       return;
     }
 
@@ -33,15 +40,12 @@ function ContactForm() {
     try {
       const response =  await addContactToFilter({ name, number });
 
-      if (response.error) {
-        alert("Error"); 
-        return;
-      }
-      alert("Successful")
+     
+      Notiflix.Notify.success("Successful")
       setName('');
       setNumber('');
     } catch (error) {
-      alert("Error");
+      Notiflix.Notify.failure("Error");
       
       
     }
