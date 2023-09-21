@@ -22,9 +22,7 @@ function ContactList() {
     contact.name.toLowerCase().includes(filter.toLowerCase())
   );
 
-  if (!filteredContacts?.length) {
-    Notiflix.Notify.info('No contacts found.');
-  }
+ 
 
   return (
     <ContList>
